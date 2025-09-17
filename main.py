@@ -2,7 +2,9 @@ import requests
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-load_dotenv()
+
+def configure():
+    load_dotenv()
 
 def get_weather_data(api_key, city_name):
     parameters = {'q': city_name, 'appid': api_key, 'units': 'metric'}
@@ -69,6 +71,8 @@ def get_gemini_response(prompt_text, gemini_api_key):
         return "Couldn't generate response from Gemini"
     
 if __name__ == "__main__":
+    configure()
+
     owm_api_key = os.getenv("OPENWEATHERMAP_API_KEY")
     gemini_api_key = os.getenv("GEMINI_API_KEY")
 
